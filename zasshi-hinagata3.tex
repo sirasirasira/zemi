@@ -1,0 +1,124 @@
+%%% 雑誌会用 雛型ファイル 2015.7 %%%
+
+%% コンパイルは (２回しましょう。)
+% uplatex texファイル
+
+%% pdfファイルにするには
+% dvipdfmx -f uptex-ipaex.map dviファイル -o 出力ファイル名
+
+% 認識の雑誌クラスを指定
+\documentclass{zasshi-prml3}
+
+% 必要なパッケージがあったら追加して
+\usepackage{ascmac}%必須
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[uplatex]{otf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{marvosym}
+\usepackage{pifont}
+\usepackage{tabularx}
+\usepackage{url}
+%bibtexを使う場合、prml.bstを参照する
+\bibliographystyle{prml}
+
+% 雑誌会資料用コマンド
+%
+% I. 論文紹介 R. 自身の研究紹介　Q. 複数の研究をまとめて紹介 
+%
+\zasshi{15}     %: 雑誌会の回数(必須 in IRQ)  
+\nendo{2019}       %: 雑誌会の年度(必須 in IRQ)
+\title{gBoost: a mathematical programming approach to graph classification and regression}  %: 表題(必須 in IRQ)
+\date{2019年7月22日(月) 15時00分}      %: 日付(必須 in IRQ)
+\place{10-21}     %: 発表場所(省略可。省略時は10-21)
+\presenter{白川 稜} %: 発表者(自分)(必須 in IRQ)
+\abstract{
+	グラフマイニング手法は、分類または回帰問題の特徴として利用することができる頻出な部分グラフパターンを列挙する.
+	しかしながら,頻出な部分グラフパターンは必ずしも学習に有用であるとは限らない.
+	ここでは,逐次的に有用なパターンを収集する数理計画ブースティング手法(gBoost)を提案する.
+	既存のブースティング手法であるAdaBoostと比較して,
+	gBoostはより少ないイテレーションで予測ルールを構築することができる.
+	ブースティング手法をグラフデータに適用するため,
+	分枝限定法を用いたパターン探索アルゴリズムをDFSコード木に基づき設計する.
+	構築された探索空間は計算時間を最小化するため,後のイテレーションで再利用される.
+	出力ラベルは探索空間を枝刈りするための情報源として利用されるため,
+	本手法では頻出部分構造マイニングによる単純な方法よりも効率的な学習が可能である.
+	加えて,数理計画問題を設計することで,
+	パターン探索アルゴリズムの修正なしに広い範囲の機械学習の問題を解くことができる.
+}  %: 概要(必須 in IRQ)
+\journal{Machine Learning}   %: 雑誌名(必須　in IQ)
+\vol{75}       %: 雑誌の volume(省略可)
+\num{1}       %: 雑誌の number(省略可)
+\year{2009}      %: 雑誌の発行年(必須 in IQ)
+\page{69-89}      %: 論文の掲載ページ(必須 in IQ)
+\author{Hiroto Saigo, Sebastian Nowozin, Tadashi Kadowaki, Taku Kudo, Koji Tsuda}    %: 論文の著者(必須 in IQ)
+
+%  ７つの質問に関する回答（全て必須）
+% {}の中に記述する。
+
+% Q.1 この論文（研究）の扱っているテーマは何か？
+\ansfirst{部分グラフ支持子を特徴量としたグラフ分類回帰問題.} %: 答えA.1
+
+% Q.2 何故、この論文（研究）を取り上げたか？　また、自分の研究との関連についても述べよ。
+\anssecond{自身の研究のベースとなる手法であるため.} %: 答えA.2
+
+% Q.3 これまでこのテーマに関する方法論の問題点は何か？
+\ansthird{全部分グラフの総数はグラフサイズに対して指数関数的に増加するため,取り扱いが困難である.} %: 答えA.3
+
+% Q.4 提案する方法論の独自性は何処にあり、どの点で有利と著者らは言ってい
+% るか（と思うか）？また、どの点は不十分あるいは劣っているか？
+\ansfourth{
+	グラフ分類回帰問題を線形計画問題として定式化し,列生成法のアイデアを元にブースティング手法を構築する.
+	加えて特徴探索において,boundの取り方を与えbranch\&bound法を用いることで,
+	従来では扱うことのできない数の特徴を考慮することが可能となる.
+} %: 答えA.4
+
+% Q.5 発表者の視点でこの論文を評価した場合、どこに利点があると思うか？
+\ansfifth{従来では扱うことのできない数の特徴を考慮できる点とそれによる精度の向上.} %: 答えA.5
+
+%TODO
+% Q.6 発表者の視点でこの論文を評価した場合、どういう点が不十分であると思うか？
+\anssixth{} %: 答えA.6
+
+% Q.7 この論文（研究）を発展させる方向はどの辺にあるか？（できれば具体的なアイディアを述べよ）
+\ansseventh{探索の効率化.branch\&bound法を用いた上でも探索空間が膨大であるため,厳密に探索を行うには相応のコストを要する.従って,MCTSやA*を用いた低コスト探索アルゴリズムの応用が有用であると考える.} %: 答えA.7
+
+% ※以上のコマンドは必ずプリアンブルで設定すること。
+%   また、省略可というのは TeX compile に関してであって、
+%   雑誌会資料においても省略可であるとは限らない。
+% \Cite{str}      : 文献の参照(先頭を大文字に！)
+
+% ※ #: 整数  str: 文字列
+
+\begin{document}
+% 以下本文（例）。普通のtex形式で。
+% maketitleはしない。
+
+\section{はじめに}
+
+\section{実験}
+
+\subsection{結果}
+
+\section{考察}
+
+\section{今後の課題}
+
+\begin{thebibliography}{9}
+% 文献の書き方(別紙)参照
+\bibitem{bib48}
+T. Cazenave and N. Jouandeau, “A
+parallel Monte-Carlo tree search
+algorithm,” in
+Proc. Comput. Games
+, Beijing, China, 2008, pp. 72–80
+\bibitem{bib80}
+M. Enzenberger and M. Müller, “A
+lock-free multithreaded Monte-
+Carlo tree search algorithm,” in
+Proc. Adv. Comput. Games
+, Pamplona,
+Spain, 2010, vol. 6048, pp. 14–20.
+\end{thebibliography}
+
+\end{document}
