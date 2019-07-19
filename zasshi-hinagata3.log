@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.14159265-p3.8.1-u1.23-180226-2.6 (utf8.uptex) (TeX Live 2018) (preloaded format=uplatex 2019.3.10)  16 JUL 2019 16:59
+This is e-upTeX, Version 3.14159265-p3.8.1-u1.23-180226-2.6 (utf8.uptex) (TeX Live 2018) (preloaded format=uplatex 2019.3.10)  17 JUL 2019 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -360,13 +360,13 @@ This may cause the page layout to be inconsistent, however.
 
 ]
 LaTeX Font Info:    Font shape `JT2/hmc/bx/n' in size <12> not available
-(Font)              Font shape `JT2/hgt/m/n' tried instead on input line 123.
+(Font)              Font shape `JT2/hgt/m/n' tried instead on input line 126.
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 11.54663pt on input line 123.
+(Font)              scaled to size 11.54663pt on input line 126.
 LaTeX Font Info:    Font shape `JY2/hmc/bx/n' in size <12> not available
-(Font)              Font shape `JY2/hgt/m/n' tried instead on input line 123.
+(Font)              Font shape `JY2/hgt/m/n' tried instead on input line 126.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 11.54663pt on input line 123.
+(Font)              scaled to size 11.54663pt on input line 126.
  [2] (./zasshi-hinagata3.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -381,4 +381,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  30i,10n,45p,434b,991s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on zasshi-hinagata3.dvi (2 pages, 8772 bytes).
+Output written on zasshi-hinagata3.dvi (2 pages, 9256 bytes).
