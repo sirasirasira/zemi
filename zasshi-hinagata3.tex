@@ -285,14 +285,7 @@ boundの値$b(t)$は以下の式で計算できる.
 \end{align}
 この枝刈りが有効に働くため,提案手法では探索空間に対して効率よくモデルを構築することができる.
 
-提案手法のアルゴリズムを以下に示す.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=140mm]{figure/algorithm1.png}
-	\caption{LPBoost part}
-	\includegraphics[width=140mm]{figure/algorithm2.png}
-	\caption{feature search part}
-\end{figure}
+提案手法のアルゴリズムを図\ref{algorithm}に示す.
 
 \section{実験}
 \subsection{データセット}
@@ -305,9 +298,68 @@ boundの値$b(t)$は以下の式で計算できる.
 	\label{datasets}
 \end{figure}
 
+\subsection{比較手法}
+\begin{itemize}
+	\item marginalized graph kernel(MGK) \& SVM
+	\item frequent pattern mining \& SVM(FreqSVM)
+	\item Gaston
+	\item correlated pattern mining(CPM)
+	\item MOLFEA
+\end{itemize}
+
 \subsection{実験設定}
+\begin{itemize}
+	\item 提案手法(gBoost)
+\end{itemize}
+最大グラフサイズ: 10\\
+正則化パラメータ$\nu$: \{0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6\}
+\begin{itemize}
+	\item MGK
+\end{itemize}
+終了確率パラメータ: {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9\}\\
+SVM正則化パラメータ: \{0.1, 1, 10, 100, 1000, 10000\}
+\begin{itemize}
+	\item FreqSVM
+\end{itemize}
+最大グラフサイズ: 10\\
+最小支持度: 1\%(Mutag, CPDB), 10\%(CAS, AIDS)\\
+SVM正則化パラメータ: \{0.1, 1, 10, 100, 1000, 10000\}
+\begin{itemize}
+	\item Gaston, CPM, MOLFEA
+\end{itemize}
+元論文中の結果を参照.
 
 \subsection{結果}
+各データセットに対する結果を図\ref{performance}に示す.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=150mm]{figure/performance.png}
+	\caption{分類精度}
+	\label{performance}
+\end{figure}
+Mutag, CAS, CPDBに関しては提案手法が最も良い精度となった.
+AIDSに関しては,CPMが良い精度となり,これは特徴量が部分グラフよりも連続パターンを用いるほうが良いことを指す.
+また,AIDSに関して提案手法がFreqSVMよりも悪い結果となったのは正則化の種類(L1, L2)によるものだと考えられる.
+
+識別に有用と判断された上位20の部分グラフを図\ref{top20features}に示す.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=80mm]{figure/top20features.png}
+	\caption{分類に有用な上位20の特徴,データ(CPDB)}
+	\label{top20features}
+\end{figure}
+上位3つの部分グラフはトキシコフォアに対応し,それぞれ芳香族アミン,脂肪族ハロゲン化物,三員複素環に相当する.
+加えて,多環芳香族システムも見ることができ,このように結果に対する解釈性を問うことが可能である.
+
+次に正則化パラメータ$\nu$に関しての実験結果を図\ref{nu_parameter}に示す.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=150mm]{figure/nu_parameter.png}
+	\caption{正則化パラメータ$\nu$の影響,データ(CPDB),最大グラフサイズ(10),P(特徴数),T(探索木サイズ),ITR(イテレーション数),$\rho$(ソフトマージン),TrACC(訓練精度)}
+	\label{nu_parameter}
+\end{figure}
+$\nu$の値が小さいと提案手法では多くの特徴を用いてモデルを構築するため訓練精度が良くなる.
+一方で$\nu$の値を大きくするに連れ,正則化項の影響が大きくなりより特徴数の少ないシンプルなモデルを構築する.
 
 \section{考察}
 
@@ -328,6 +380,14 @@ Carlo tree search algorithm,” in
 Proc. Adv. Comput. Games
 , Pamplona,
 Spain, 2010, vol. 6048, pp. 14–20.
-\end{thebibliography}
+\end{thebibliography}k
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=160mm]{figure/algorithm1.png}
+	\caption{LPBoost part}
+	\includegraphics[width=160mm]{figure/algorithm2.png}
+	\caption{feature search part}
+	\label{algorithm}
+\end{figure}
 \end{document}
