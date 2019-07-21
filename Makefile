@@ -4,8 +4,8 @@ file_name = zasshi-hinagata3
 all:
 	uplatex $(file_name).tex
 	dvipdfmx -f uptex-ipaex.map $(file_name).dvi
-	evince $(file_name).pdf &
-	#open $(file_name).pdf &
+	#evince $(file_name).pdf &
+	open $(file_name).pdf &
 
 pdf: $(file_name).dvi
 	dvipdfmx -f uptex-ipaex.map $(file_name).dvi
